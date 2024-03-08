@@ -26,7 +26,7 @@ import delu.game.antivoronline.activity.ui.theme.AntivorOnlineTheme
 class WebViewActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+//        requestPermissionsAntivor()
         setContent {
             AntivorOnlineTheme {
                 WebViewPage.SetWebView(
@@ -37,17 +37,11 @@ class WebViewActivity : ComponentActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-//        requestPermissionsAntivor()
-    }
-
     private fun requestPermissionsAntivor() {
         val permissionsList = mutableListOf<String>(
             Manifest.permission.CAMERA
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // SDK 33
-            permissionsList.add(Manifest.permission.READ_MEDIA_AUDIO)
             permissionsList.add(Manifest.permission.READ_MEDIA_IMAGES)
             permissionsList.add(Manifest.permission.READ_MEDIA_VIDEO)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) // SDK 34

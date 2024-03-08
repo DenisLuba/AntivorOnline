@@ -50,18 +50,12 @@ class MainActivity : ComponentActivity() {
             && getSharedPreferences(SHARED_PREFERENCES_AUTHORIZATION, 0).contains(PASSWORD)
         ) {
             Log.d(LOG_WEB_COOKIE, "intro intent")
-//            startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
-            setContent{
-                WebViewPage.SetWebView(
-                    url = MainActivity.URL,
-                    activity = this
-                )
-            }
+            startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
         } else {
             Log.d(LOG_WEB_COOKIE, "after intent")
             setContent {
                 AntivorOnlineTheme {
-//                    Authorization(this)
+                    Authorization(this)
 
                 }
             }
