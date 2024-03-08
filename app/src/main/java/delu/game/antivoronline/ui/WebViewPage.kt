@@ -1,16 +1,23 @@
-package delu.game.antivoronline
+package delu.game.antivoronline.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.util.Log
 import android.view.ViewGroup
-import android.webkit.WebSettings.LOAD_DEFAULT
+import android.webkit.WebSettings
 import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,10 +30,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.InspectableModifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import delu.game.antivoronline.R
 import delu.game.antivoronline.web.WebChromeClientAntivor
 import delu.game.antivoronline.web.WebViewClientAntivor
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 object WebViewPage {
 
@@ -67,14 +78,14 @@ object WebViewPage {
         )
 
         ProgressIndicator(visibility = visibility, percents = progress)
-
+        SignOutButton()
         BackHandler(enabled = backEnabled.value) {
             webView?.goBack()
         }
     }
 
     @Composable
-    fun ProgressIndicator(visibility: MutableState<Boolean>, percents: MutableFloatState) {
+    private fun ProgressIndicator(visibility: MutableState<Boolean>, percents: MutableFloatState) {
         if (!visibility.value) return
 
         Column(
@@ -86,9 +97,31 @@ object WebViewPage {
                 modifier = Modifier.width(64.dp),
                 color = MaterialTheme.colorScheme.secondary,
                 trackColor = MaterialTheme.colorScheme.surfaceVariant,
-                progress = percents.floatValue
+//                progress = percents.floatValue
             )
         }
+    }
+
+    @Composable
+    private fun SignOutButton() {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Button(
+                onClick = {
+
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+            ) {
+                Image(painterResource(
+                    id = R.drawable.sign_out),
+                    contentDescription = "Sing out",
+                    modifier = Modifier.size(28.dp)
+                )
+            }
+        }
+
     }
 }
 
@@ -102,7 +135,7 @@ private fun WebView.setSettings() {
         // set up to support DomStorage
         domStorageEnabled = true
         // set the storage mode
-        cacheMode = LOAD_DEFAULT
+        cacheMode = WebSettings.LOAD_DEFAULT
         // set fit to Screen
         useWideViewPort = true
         loadWithOverviewMode = true

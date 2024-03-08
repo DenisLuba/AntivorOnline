@@ -1,4 +1,4 @@
-package delu.game.antivoronline.activity
+package delu.game.antivoronline.ui.activity
 
 import android.Manifest
 import android.app.Activity
@@ -14,14 +14,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import delu.game.antivoronline.WebViewPage
-import delu.game.antivoronline.activity.ui.theme.AntivorOnlineTheme
+import delu.game.antivoronline.ui.WebViewPage
+import delu.game.antivoronline.ui.activity.ui.theme.AntivorOnlineTheme
 
 class WebViewActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

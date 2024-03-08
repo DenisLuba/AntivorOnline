@@ -1,4 +1,4 @@
-package delu.game.antivoronline.activity.ui.theme
+package delu.game.antivoronline.ui.activity.ui.theme
 
 import android.app.Activity
 import android.os.Build

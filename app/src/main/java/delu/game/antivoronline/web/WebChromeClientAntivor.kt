@@ -1,22 +1,15 @@
 package delu.game.antivoronline.web
 
-import android.app.Activity
 import android.content.ActivityNotFoundException
-import android.content.Intent
 import android.net.Uri
-import android.util.MutableFloat
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.MutableFloatState
-import androidx.compose.runtime.MutableState
 import delu.game.antivoronline.R
-import delu.game.antivoronline.activity.WebViewActivity
+import delu.game.antivoronline.ui.activity.WebViewActivity
 
 class WebChromeClientAntivor(
     private val activity: ComponentActivity,

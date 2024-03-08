@@ -1,4 +1,4 @@
-package delu.game.antivoronline.ui.theme
+package delu.game.antivoronline.ui.activity.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

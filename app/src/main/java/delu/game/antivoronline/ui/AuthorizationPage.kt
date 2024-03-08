@@ -1,13 +1,7 @@
-package delu.game.antivoronline.activity
+package delu.game.antivoronline.ui
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
-import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -33,38 +27,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import delu.game.antivoronline.R
-import delu.game.antivoronline.WebViewPage
-import delu.game.antivoronline.ui.theme.AntivorOnlineTheme
+import delu.game.antivoronline.ui.activity.MainActivity
+import delu.game.antivoronline.ui.activity.WebViewActivity
 
-class MainActivity : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-        Log.d(LOG_WEB_COOKIE, "requestPermissionAntivor finished")
-        if (getSharedPreferences(SHARED_PREFERENCES_AUTHORIZATION, 0).contains(LOGIN)
-            && getSharedPreferences(SHARED_PREFERENCES_AUTHORIZATION, 0).contains(PASSWORD)
-        ) {
-            Log.d(LOG_WEB_COOKIE, "intro intent")
-            startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
-        } else {
-            Log.d(LOG_WEB_COOKIE, "after intent")
-            setContent {
-                AntivorOnlineTheme {
-                    Authorization(this)
-
-                }
-            }
-        }
-
-    }
+object AuthorizationPage {
 
     @Composable
-    fun Authorization(context: ComponentActivity) {
+    fun GetAuthorization(context: ComponentActivity) {
 
         Column(
             modifier = Modifier
@@ -109,17 +79,21 @@ class MainActivity : ComponentActivity() {
 //            Button
             Button(
                 onClick = {
-                    context.getSharedPreferences(SHARED_PREFERENCES_AUTHORIZATION, 0)
+                    context.getSharedPreferences(MainActivity.SHARED_PREFERENCES_AUTHORIZATION, 0)
                         .edit()
                         .putString(
-                            LOGIN,
+                            MainActivity.LOGIN,
                             loginValue.value.text.trim()
                         ).putString(
-                            PASSWORD,
+                            MainActivity.PASSWORD,
                             passwordValue.value.text.trim()
                         ).apply()
 
-                    startActivity(Intent(this@MainActivity, WebViewActivity::class.java))
+                    context.apply {
+                        startActivity(Intent(context, WebViewActivity::class.java))
+                        finish()
+                    }
+
                 },
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.purple_200)),
@@ -138,30 +112,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-
-    companion object {
-        const val URL = "https://support.antivor.ru/"
-
-        const val ANTIVOR_RU = "https://support.antivor.ru/"
-        const val METANIT_COM = "https://metanit.com"
-        const val VK_RU = "https://vk.com/feed"
-        const val URL_WITHOUT_INTERNET = "file:///android_asset/index.html"
-
-        const val LOG_WEB_CLIENT: String = "LOG_WEB_CLIENT"
-        const val LOG_WEB_COOKIE: String = "LOG_WEB_COOKIE"
-
-        var backEnabled: Boolean = false
-
-
-        const val SHARED_PREFERENCES_AUTHORIZATION = "SHARED_PREFERENCES_AUTHORIZATION"
-        const val LOGIN = "LOGIN"
-        const val PASSWORD = "PASSWORD"
-        const val NOTHING = "NOTHING"
-    }
 }
-
-
-
-
-
