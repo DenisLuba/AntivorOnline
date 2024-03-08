@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "648112373265",
+    "project_id": "antivoronline",
+    "storage_bucket": "antivoronline.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648112373265:android:82c6ebea16e5dd65b23bb0",
+        "android_client_info": {
+          "package_name": "delu.game.antivoronline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5f_zU63MP_oifqq0mISGD5HK1LmBc_Jc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
