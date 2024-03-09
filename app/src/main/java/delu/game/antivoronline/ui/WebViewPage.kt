@@ -78,7 +78,7 @@ object WebViewPage {
         )
 
         ProgressIndicator(visibility = visibility, percents = progress)
-        SignOutButton()
+//        SignOutButton()
         BackHandler(enabled = backEnabled.value) {
             webView?.goBack()
         }
