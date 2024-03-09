@@ -35,6 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import delu.game.antivoronline.R
+import delu.game.antivoronline.web.DownloadListenerAntivor
 import delu.game.antivoronline.web.WebChromeClientAntivor
 import delu.game.antivoronline.web.WebViewClientAntivor
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
@@ -68,6 +69,7 @@ object WebViewPage {
                     )
                     webViewClient = WebViewClientAntivor(activity, backEnabled, visibility)
                     webChromeClient = WebChromeClientAntivor(activity, progress)
+                    setDownloadListener(DownloadListenerAntivor(activity))
                     setSettings()
                     loadUrl(url)
                     webView = this
