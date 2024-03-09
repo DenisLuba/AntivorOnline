@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AntivorOnline</string>
+    <string name="app_name">Antivor Online</string>
     <string name="title_activity_web_view">WebViewActivity</string>
     <string name="cannot_open_file_chooser">Cannot Open File Chooser</string>
     <string name="login">Login</string>
